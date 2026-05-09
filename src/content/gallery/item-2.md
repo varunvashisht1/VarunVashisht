@@ -1,6 +1,6 @@
 ---
 caption: IIBA Milaap Delhi
 alt: IIBA Milaap Delhi
-image: /media/untitled-design-1-.png
+image: /media/ss.jpeg
 order: 2
 ---
