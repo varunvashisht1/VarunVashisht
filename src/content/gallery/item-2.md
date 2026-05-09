@@ -1,6 +1,6 @@
 ---
-caption: "Keynote presentation on AI in PMO"
-alt: "Varun Vashisht presenting at a keynote on AI in PMO"
-image: "/media/personal-2.png"
+caption: IIBA Milaap Delhi
+alt: IIBA Milaap Delhi
+image: /media/untitled-design-1-.png
 order: 2
 ---
