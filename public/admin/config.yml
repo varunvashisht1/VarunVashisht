@@ -2,8 +2,8 @@ backend:
   name: git-gateway
   branch: main
 
-media_folder: public/media/blog
-public_folder: /media/blog
+media_folder: public/media
+public_folder: /media
 
 collections:
   - name: blog
@@ -19,3 +19,77 @@ collections:
       - { label: Tags, name: tags, widget: list, required: false }
       - { label: Draft, name: draft, widget: boolean, default: false }
       - { label: Body, name: body, widget: markdown }
+
+  - name: gallery
+    label: Gallery
+    folder: src/content/gallery
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Caption, name: caption, widget: string }
+      - { label: Alt Text, name: alt, widget: string }
+      - { label: Image, name: image, widget: image }
+      - { label: Order, name: order, widget: number, default: 99 }
+
+  - name: cases
+    label: Case Studies
+    folder: src/content/cases
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Tag, name: tag, widget: string }
+      - { label: Image, name: image, widget: image }
+      - { label: Image Alt, name: imageAlt, widget: string }
+      - { label: Description, name: description, widget: text }
+      - label: Tech Tags
+        name: meta
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Result Summary, name: result, widget: string, hint: "Use HTML bold for numbers e.g. <strong>99.9%</strong> system continuity" }
+      - label: Modal Tech Tags
+        name: modalMeta
+        widget: list
+        field: { label: Tag, name: tag, widget: string }
+      - { label: Challenge, name: challenge, widget: text }
+      - { label: Approach Overview, name: approach, widget: text }
+      - label: Approach Bullets
+        name: approachBullets
+        widget: list
+        field: { label: Bullet, name: bullet, widget: string }
+      - label: Outcomes
+        name: outcomes
+        widget: list
+        fields:
+          - { label: Value, name: value, widget: string }
+          - { label: Label, name: label, widget: string }
+      - { label: Order, name: order, widget: number, default: 99 }
+
+  - name: certifications
+    label: Certifications
+    folder: src/content/certifications
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Abbreviation, name: mark, widget: string, hint: "e.g. PMP, CBAP" }
+      - { label: Full Title, name: title, widget: string }
+      - { label: Issuer & Date, name: issuer, widget: string }
+      - { label: Order, name: order, widget: number, default: 99 }
+
+  - name: experience
+    label: Experience
+    folder: src/content/experience
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Job Title, name: title, widget: string }
+      - { label: Company, name: company, widget: string }
+      - { label: Start Date, name: startDate, widget: string, hint: "e.g. Jan 2026" }
+      - { label: End Date, name: endDate, widget: string, hint: "e.g. Dec 2025 or Present" }
+      - { label: Current Role, name: current, widget: boolean, default: false }
+      - { label: Description, name: description, widget: text }
+      - label: Key Achievements
+        name: bullets
+        widget: list
+        field: { label: Achievement, name: bullet, widget: string }
+      - { label: Order, name: order, widget: number, default: 99 }

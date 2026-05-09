@@ -8,6 +8,15 @@ const publishedPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
+const galleryItems = (await getCollection('gallery')).sort((a, b) => a.data.order - b.data.order);
+const caseStudies = (await getCollection('cases')).sort((a, b) => a.data.order - b.data.order);
+const certifications = (await getCollection('certifications')).sort((a, b) => a.data.order - b.data.order);
+const experiences = (await getCollection('experience')).sort((a, b) => {
+  if (a.data.current && !b.data.current) return -1;
+  if (!a.data.current && b.data.current) return 1;
+  return a.data.order - b.data.order;
+});
+
 const base = '';
 ---
 
@@ -128,102 +137,26 @@ const base = '';
       <div class="timeline">
         <div class="tl-line"></div>
 
-        <article class="tl-item" data-reveal>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <h3>Senior Program Manager</h3>
-              <span class="tl-org">Blue Ocean Corporation</span>
-              <span class="tl-date">Jan 2026 – Present</span>
+        {experiences.map(exp => (
+          <article class="tl-item" data-reveal>
+            <div class="tl-dot"></div>
+            <div class="tl-card">
+              <div class="tl-head">
+                <h3>{exp.data.title}</h3>
+                <span class="tl-org">{exp.data.company}</span>
+                <span class="tl-date">{exp.data.startDate} – {exp.data.endDate}</span>
+              </div>
+              <p>{exp.data.description}</p>
+              {exp.data.bullets && exp.data.bullets.length > 0 && (
+                <ul>
+                  {exp.data.bullets.map(bullet => (
+                    <li>{bullet}</li>
+                  ))}
+                </ul>
+              )}
             </div>
-            <p>PMO governance across Website, LMS, Mobile App, and the Zoho One ecosystem &mdash; aligning the digital roadmap with revenue goals and embedding GenAI into reporting and requirements.</p>
-            <ul>
-              <li>Centralised PMO cadence with executive Power BI and Zoho Analytics dashboards.</li>
-              <li>Mobile, LMS, and CRM integration for engagement and adoption.</li>
-              <li>Vendor &amp; platform partner governance — onboarding, SLAs, joint roadmaps.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <h3>Product Specialist · Assistant Consultant</h3>
-              <span class="tl-org">Tata Consultancy Services (TCS)</span>
-              <span class="tl-date">Jul 2022 – Jan 2026</span>
-            </div>
-            <p>Owned strategy, BA, vendor evaluation, and end-to-end delivery for a global Oil &amp; Energy client&rsquo;s physical security and digital transformation portfolio &mdash; <strong>$8M annual program budget</strong>.</p>
-            <ul>
-              <li>10+ enterprise programs delivered with HLD/LLD, gap and impact analyses.</li>
-              <li>Genetec and Honeywell Pro-Watch upgrades at 99.9% continuity.</li>
-              <li>AI/ML Python proof of concept: 80% faster project-to-resource matching.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <h3>Lead Consultant</h3>
-              <span class="tl-org">Birlasoft</span>
-              <span class="tl-date">Apr 2021 – Jul 2022</span>
-            </div>
-            <p>Agile delivery lead on a US Healthcare Coordination of Benefits (COB) modernisation programme &mdash; owning backlog, SSIS ETL automation, and SQL-driven data quality.</p>
-            <ul>
-              <li>150+ user stories managed in Azure DevOps.</li>
-              <li>Automated ETL testing framework — 50% manual effort reduction.</li>
-              <li>15% drop in data inconsistencies via advanced SQL validation.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <h3>Business Analyst · Project Manager</h3>
-              <span class="tl-org">Jaarwis Technologies</span>
-              <span class="tl-date">Jun 2019 – Apr 2021</span>
-            </div>
-            <p>Dual BA/PM on a fintech motor-credit platform, SharePoint data migration, and IoT visitor-flow design for large-format hospitality clients.</p>
-            <ul>
-              <li>Three real-time credit-check API integrations from concept to launch.</li>
-              <li>SharePoint migration with 100% data fidelity.</li>
-              <li>IoT solution projected at 20% visitor-flow optimisation.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <h3>Project Manager · Business Analyst</h3>
-              <span class="tl-org">Online24x7 India</span>
-              <span class="tl-date">Sep 2015 – Jun 2019</span>
-            </div>
-            <p>Led 7 enterprise CRM/HCM rollouts &mdash; Microsoft Dynamics 365 / Dynamics CRM (2) and Ramco HCM (5) &mdash; across global geographies.</p>
-            <ul>
-              <li>Cross-functional teams of 8&ndash;20 across multiple regions.</li>
-              <li>95% post-go-live user adoption via training programmes.</li>
-              <li>10+ HRMS↔ERP integrations via SSIS packages.</li>
-            </ul>
-          </div>
-        </article>
-
-        <article class="tl-item" data-reveal>
-          <div class="tl-dot"></div>
-          <div class="tl-card">
-            <div class="tl-head">
-              <h3>Assistant Shift Engineer</h3>
-              <span class="tl-org">Fuji Technical Services</span>
-              <span class="tl-date">Sep 2012 – Aug 2015</span>
-            </div>
-            <p>Operational reporting and Excel-driven analysis for a key Oil &amp; Energy client &mdash; 20+ SQL reports and 15+ executive presentations.</p>
-          </div>
-        </article>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -301,56 +234,26 @@ const base = '';
       <p class="section-sub center">Three programmes that highlight strategy, delivery rigour, and AI-enabled execution.</p>
 
       <div class="cases-grid">
-        <article class="case" data-reveal>
-          <div class="case-img">
-            <img src={`${base}/media/case-1-new.png`}
-                 onerror="this.onerror=null;this.src='/media/case-1.jpg';"
-                 alt="Industrial energy facility"
-                 loading="lazy" width="800" height="500" />
-            <span class="case-tag">Oil &amp; Energy</span>
-          </div>
-          <div class="case-body">
-            <h3>$8M Physical Security &amp; Digital Transformation Portfolio</h3>
-            <p>Global Oil &amp; Energy client &mdash; owned strategy, requirements, vendor evaluation, and 10+ enterprise programmes end-to-end with full audit traceability.</p>
-            <div class="case-meta"><span>Genetec</span><span>Honeywell Pro-Watch</span><span>Vendor RFP</span><span>HLD/LLD</span></div>
-            <div class="case-result"><strong>99.9%</strong> system continuity &nbsp;·&nbsp; <strong>100%</strong> remediation closure</div>
-            <button class="btn-case-detail" data-open-modal="case-modal-1" aria-haspopup="dialog">View full case study →</button>
-          </div>
-        </article>
-
-        <article class="case" data-reveal>
-          <div class="case-img">
-            <img src={`${base}/media/case-2-new.png`}
-                 onerror="this.onerror=null;this.src='/media/case-2.jpg';"
-                 alt="Healthcare data systems"
-                 loading="lazy" width="800" height="500" />
-            <span class="case-tag">Healthcare</span>
-          </div>
-          <div class="case-body">
-            <h3>US Healthcare Coordination of Benefits Modernisation</h3>
-            <p>Agile delivery lead &mdash; 150+ user-story backlog, automated SSIS ETL testing framework, and advanced SQL validation across complex COB data flows.</p>
-            <div class="case-meta"><span>Azure DevOps</span><span>SSIS</span><span>SQL</span><span>HIPAA exposure</span></div>
-            <div class="case-result"><strong>50%</strong> less manual QA &nbsp;·&nbsp; <strong>15%</strong> fewer data inconsistencies</div>
-            <button class="btn-case-detail" data-open-modal="case-modal-2" aria-haspopup="dialog">View full case study →</button>
-          </div>
-        </article>
-
-        <article class="case" data-reveal>
-          <div class="case-img">
-            <img src={`${base}/media/case-3-new.png`}
-                 onerror="this.onerror=null;this.src='/media/case-3.jpg';"
-                 alt="Data analytics dashboard"
-                 loading="lazy" width="800" height="500" />
-            <span class="case-tag">AI / ML</span>
-          </div>
-          <div class="case-body">
-            <h3>AI/ML Resource-Allocation Proof of Concept</h3>
-            <p>Engineered a Python-based proof of concept that learned project–resource fit signals &mdash; accelerating programme staffing decisions across the portfolio.</p>
-            <div class="case-meta"><span>Python</span><span>ML</span><span>Azure OpenAI</span><span>PMO Ops</span></div>
-            <div class="case-result"><strong>80%</strong> faster project-to-resource matching</div>
-            <button class="btn-case-detail" data-open-modal="case-modal-3" aria-haspopup="dialog">View full case study →</button>
-          </div>
-        </article>
+        {caseStudies.map(cs => (
+          <article class="case" data-reveal>
+            <div class="case-img">
+              <img src={`${base}${cs.data.image}`}
+                   onerror={`this.onerror=null;this.src='${cs.data.imageFallback || cs.data.image}';`}
+                   alt={cs.data.imageAlt}
+                   loading="lazy" width="800" height="500" />
+              <span class="case-tag">{cs.data.tag}</span>
+            </div>
+            <div class="case-body">
+              <h3>{cs.data.title}</h3>
+              <p>{cs.data.description}</p>
+              <div class="case-meta">
+                {cs.data.meta.map(m => <span>{m}</span>)}
+              </div>
+              <div class="case-result" set:html={cs.data.result}></div>
+              <button class="btn-case-detail" data-open-modal={`case-modal-${cs.id}`} aria-haspopup="dialog">View full case study →</button>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   </section>
@@ -362,16 +265,15 @@ const base = '';
       <p class="section-sub center">Active credentials across program management, business analysis, and cloud.</p>
 
       <div class="certs-grid">
-        <div class="cert" data-reveal><div class="cert-mark">PMP</div><div><h4>Project Management Professional</h4><span>PMI · 2025–2028</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">CBAP</div><div><h4>Certified Business Analysis Professional</h4><span>IIBA · 2021–2027</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">PBA</div><div><h4>PMI Professional in Business Analysis</h4><span>PMI · 2020–2026</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">LSS</div><div><h4>Lean Six Sigma Black Belt</h4><span>Kennesaw State University</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">ITIL</div><div><h4>ITIL Foundation</h4><span>IT Service Management</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">DP-900</div><div><h4>Azure Data Fundamentals</h4><span>Microsoft</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">SC-900</div><div><h4>Security, Compliance &amp; Identity Fundamentals</h4><span>Microsoft</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">GenAI</div><div><h4>TCS Certified GenAI Practitioner</h4><span>Tata Consultancy Services</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">GDA</div><div><h4>Google Data Analytics Professional</h4><span>Coursera</span></div></div>
-        <div class="cert" data-reveal><div class="cert-mark">HX</div><div><h4>HarvardX: LEAD1x — Exercising Leadership</h4><span>Harvard</span></div></div>
+        {certifications.map(cert => (
+          <div class="cert" data-reveal>
+            <div class="cert-mark">{cert.data.mark}</div>
+            <div>
+              <h4>{cert.data.title}</h4>
+              <span>{cert.data.issuer}</span>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -383,22 +285,12 @@ const base = '';
       <p class="section-sub center">A glimpse into my professional journey, speaking engagements, and team collaborations.</p>
 
       <div class="gallery-grid">
-        <div class="gallery-item" data-reveal>
-          <img src={`${base}/media/personal-1.png`} alt="Varun Vashisht leading a digital transformation strategy session" loading="lazy" width="600" height="600" />
-          <div class="gallery-caption">Leading digital transformation strategy</div>
-        </div>
-        <div class="gallery-item" data-reveal>
-          <img src={`${base}/media/personal-2.png`} alt="Varun Vashisht presenting at a keynote on AI in PMO" loading="lazy" width="600" height="600" />
-          <div class="gallery-caption">Keynote presentation on AI in PMO</div>
-        </div>
-        <div class="gallery-item" data-reveal>
-          <img src={`${base}/media/personal-3.png`} alt="Varun Vashisht collaborating with a cross-functional team" loading="lazy" width="600" height="600" />
-          <div class="gallery-caption">Collaborating with cross-functional teams</div>
-        </div>
-        <div class="gallery-item" data-reveal>
-          <img src={`${base}/media/personal-4.png`} alt="Varun Vashisht presenting enterprise architecture diagrams" loading="lazy" width="600" height="600" />
-          <div class="gallery-caption">Executing enterprise architecture</div>
-        </div>
+        {galleryItems.map(item => (
+          <div class="gallery-item" data-reveal>
+            <img src={`${base}${item.data.image}`} alt={item.data.alt} loading="lazy" width="600" height="600" />
+            <div class="gallery-caption">{item.data.caption}</div>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -502,112 +394,50 @@ const base = '';
     </div>
   </footer>
 
-  <!-- Case Study Modals -->
-  <div class="modal" id="case-modal-1" role="dialog" aria-modal="true" aria-labelledby="cm1-title" hidden>
-    <div class="modal-overlay" data-modal-close></div>
-    <div class="modal-box">
-      <button class="modal-close" aria-label="Close case study" data-modal-close>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <div class="modal-content">
-        <span class="case-tag" style="position:static;margin-bottom:16px;display:inline-block;">Oil &amp; Energy</span>
-        <h2 id="cm1-title">$8M Physical Security &amp; Digital Transformation Portfolio</h2>
-        <div class="modal-meta"><span>Genetec</span><span>Honeywell Pro-Watch</span><span>Vendor RFP</span><span>HLD / LLD</span><span>Azure DevOps</span></div>
-        <div class="modal-section">
-          <h4>Challenge</h4>
-          <p>A global Oil &amp; Energy client operated fragmented physical security infrastructure across 50+ sites worldwide — aging hardware, vendor lock-in, and no unified monitoring. Compliance gaps were accumulating and audit remediation was manual and slow.</p>
-        </div>
-        <div class="modal-section">
-          <h4>Approach</h4>
-          <p>Led full programme lifecycle from current-state gap analysis through HLD/LLD design, competitive vendor evaluation (Genetec vs. legacy incumbents), and phased global rollout. Maintained full audit traceability across 10+ parallel workstreams.</p>
-          <ul>
-            <li>Conducted RFP/RFI process across 4 competing vendors — produced decision matrix and executive recommendation.</li>
-            <li>Authored BRD, FRD, HLD, LLD, and RAID logs for each programme workstream.</li>
-            <li>Coordinated cross-functional teams of 20+ across engineering, security operations, and third-party contractors.</li>
-          </ul>
-        </div>
-        <div class="modal-section">
-          <h4>Outcomes</h4>
-          <div class="modal-results">
-            <div class="modal-result-item"><strong>99.9%</strong><span>System continuity across all global sites</span></div>
-            <div class="modal-result-item"><strong>100%</strong><span>Audit remediation closure within programme timeline</span></div>
-            <div class="modal-result-item"><strong>$8M</strong><span>Annual programme budget managed within scope</span></div>
+  <!-- Case Study Modals (dynamic) -->
+  {caseStudies.map(cs => (
+    <div class="modal" id={`case-modal-${cs.id}`} role="dialog" aria-modal="true" aria-labelledby={`cm-${cs.id}-title`} hidden>
+      <div class="modal-overlay" data-modal-close></div>
+      <div class="modal-box">
+        <button class="modal-close" aria-label="Close case study" data-modal-close>
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <div class="modal-content">
+          <span class="case-tag" style="position:static;margin-bottom:16px;display:inline-block;">{cs.data.tag}</span>
+          <h2 id={`cm-${cs.id}-title`}>{cs.data.title}</h2>
+          <div class="modal-meta">
+            {cs.data.modalMeta.map(m => <span>{m}</span>)}
+          </div>
+          <div class="modal-section">
+            <h4>Challenge</h4>
+            <p>{cs.data.challenge}</p>
+          </div>
+          <div class="modal-section">
+            <h4>Approach</h4>
+            <p>{cs.data.approach}</p>
+            {cs.data.approachBullets && cs.data.approachBullets.length > 0 && (
+              <ul>
+                {cs.data.approachBullets.map(bullet => (
+                  <li>{bullet}</li>
+                ))}
+              </ul>
+            )}
+          </div>
+          <div class="modal-section">
+            <h4>Outcomes</h4>
+            <div class="modal-results">
+              {cs.data.outcomes.map(outcome => (
+                <div class="modal-result-item">
+                  <strong>{outcome.value}</strong>
+                  <span>{outcome.label}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="modal" id="case-modal-2" role="dialog" aria-modal="true" aria-labelledby="cm2-title" hidden>
-    <div class="modal-overlay" data-modal-close></div>
-    <div class="modal-box">
-      <button class="modal-close" aria-label="Close case study" data-modal-close>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <div class="modal-content">
-        <span class="case-tag" style="position:static;margin-bottom:16px;display:inline-block;">Healthcare</span>
-        <h2 id="cm2-title">US Healthcare Coordination of Benefits Modernisation</h2>
-        <div class="modal-meta"><span>Azure DevOps</span><span>SSIS ETL</span><span>SQL / T-SQL</span><span>HIPAA</span><span>Agile / Scrum</span></div>
-        <div class="modal-section">
-          <h4>Challenge</h4>
-          <p>A US healthcare client's Coordination of Benefits (COB) system processed complex multi-payer claims but relied on manual QA processes that were slow, error-prone, and unable to scale. Data inconsistencies across COB flows were eroding downstream accuracy.</p>
-        </div>
-        <div class="modal-section">
-          <h4>Approach</h4>
-          <p>Served as Agile delivery lead — owning the full backlog in Azure DevOps, driving two-week sprint cycles, and personally designing the automated SSIS ETL testing framework that replaced manual validation.</p>
-          <ul>
-            <li>Managed 150+ user stories from refinement through UAT sign-off.</li>
-            <li>Built automated ETL test suite using SSIS and T-SQL stored procedures — cutting manual QA effort by 50%.</li>
-            <li>Authored advanced SQL validation scripts that identified and resolved systemic data inconsistencies.</li>
-          </ul>
-        </div>
-        <div class="modal-section">
-          <h4>Outcomes</h4>
-          <div class="modal-results">
-            <div class="modal-result-item"><strong>50%</strong><span>Reduction in manual QA effort via SSIS automation</span></div>
-            <div class="modal-result-item"><strong>15%</strong><span>Fewer data inconsistencies across COB flows</span></div>
-            <div class="modal-result-item"><strong>150+</strong><span>User stories delivered across Agile sprints</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="modal" id="case-modal-3" role="dialog" aria-modal="true" aria-labelledby="cm3-title" hidden>
-    <div class="modal-overlay" data-modal-close></div>
-    <div class="modal-box">
-      <button class="modal-close" aria-label="Close case study" data-modal-close>
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-      </button>
-      <div class="modal-content">
-        <span class="case-tag" style="position:static;margin-bottom:16px;display:inline-block;">AI / ML</span>
-        <h2 id="cm3-title">AI/ML Resource-Allocation Proof of Concept</h2>
-        <div class="modal-meta"><span>Python</span><span>Machine Learning</span><span>Azure OpenAI</span><span>PMO Ops</span><span>Pandas / scikit-learn</span></div>
-        <div class="modal-section">
-          <h4>Challenge</h4>
-          <p>Programme managers were spending days manually matching projects to available resources — a time-consuming process that created bottlenecks at the start of every engagement. The portfolio had grown to a scale where intuition-based staffing was no longer viable.</p>
-        </div>
-        <div class="modal-section">
-          <h4>Approach</h4>
-          <p>Designed and built a Python-based ML proof of concept that learned project–resource fit signals from historical programme data. Integrated Azure OpenAI to enrich project requirement descriptions before scoring.</p>
-          <ul>
-            <li>Extracted and structured historical staffing data from PMO records.</li>
-            <li>Trained a similarity model using scikit-learn on project attributes and resource skill profiles.</li>
-            <li>Built a lightweight interface for programme managers to get ranked resource recommendations instantly.</li>
-            <li>Validated PoC results with PMO stakeholders — 80% reduction in time-to-match vs. manual baseline.</li>
-          </ul>
-        </div>
-        <div class="modal-section">
-          <h4>Outcomes</h4>
-          <div class="modal-results">
-            <div class="modal-result-item"><strong>80%</strong><span>Faster project-to-resource matching vs. manual process</span></div>
-            <div class="modal-result-item"><strong>PoC</strong><span>Validated with PMO leadership for broader rollout</span></div>
-            <div class="modal-result-item"><strong>Azure OpenAI</strong><span>Integrated for requirement enrichment and scoring</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  ))}
 
   <script is:inline src="/assets/js/main.js"></script>
   <script is:inline>
