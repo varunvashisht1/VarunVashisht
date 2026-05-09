@@ -8,7 +8,7 @@ const publishedPosts = allPosts
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
   .slice(0, 3);
 
-const base = '/varun-portfolio2';
+const base = '';
 ---
 
 <Layout>
@@ -40,7 +40,7 @@ const base = '/varun-portfolio2';
     <div class="hero-media" aria-hidden="true">
       <img class="hero-img"
            src={`${base}/media/hero-office-empty.png`}
-           onerror="this.onerror=null;this.src='/varun-portfolio2/media/hero-bg.jpg';"
+           onerror="this.onerror=null;this.src='/media/hero-bg.jpg';"
            alt="Hero Background" />
       <div class="hero-overlay"></div>
       <img class="hero-person"
@@ -77,7 +77,7 @@ const base = '/varun-portfolio2';
       <div class="about-visual">
         <div class="about-photo">
           <img src={`${base}/media/about.jpg`}
-               onerror="this.onerror=null;this.src='/varun-portfolio2/media/avatar.png';"
+               onerror="this.onerror=null;this.src='/media/avatar.png';"
                alt="Varun Vashisht"
                loading="lazy" width="480" height="600" />
         </div>
@@ -304,7 +304,7 @@ const base = '/varun-portfolio2';
         <article class="case" data-reveal>
           <div class="case-img">
             <img src={`${base}/media/case-1-new.png`}
-                 onerror="this.onerror=null;this.src='/varun-portfolio2/media/case-1.jpg';"
+                 onerror="this.onerror=null;this.src='/media/case-1.jpg';"
                  alt="Industrial energy facility"
                  loading="lazy" width="800" height="500" />
             <span class="case-tag">Oil &amp; Energy</span>
@@ -321,7 +321,7 @@ const base = '/varun-portfolio2';
         <article class="case" data-reveal>
           <div class="case-img">
             <img src={`${base}/media/case-2-new.png`}
-                 onerror="this.onerror=null;this.src='/varun-portfolio2/media/case-2.jpg';"
+                 onerror="this.onerror=null;this.src='/media/case-2.jpg';"
                  alt="Healthcare data systems"
                  loading="lazy" width="800" height="500" />
             <span class="case-tag">Healthcare</span>
@@ -338,7 +338,7 @@ const base = '/varun-portfolio2';
         <article class="case" data-reveal>
           <div class="case-img">
             <img src={`${base}/media/case-3-new.png`}
-                 onerror="this.onerror=null;this.src='/varun-portfolio2/media/case-3.jpg';"
+                 onerror="this.onerror=null;this.src='/media/case-3.jpg';"
                  alt="Data analytics dashboard"
                  loading="lazy" width="800" height="500" />
             <span class="case-tag">AI / ML</span>
@@ -435,7 +435,7 @@ const base = '/varun-portfolio2';
         ) : (
           <>
             <article class="post" data-reveal>
-              <a href="#" class="post-img" aria-label="Read post: Building a PMO that engineering actually wants to work with"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1100&q=80&auto=format&fit=crop" onerror="this.onerror=null;this.src='/varun-portfolio2/media/blog-1.jpg';" alt="Team collaborating around a table in a modern office" loading="lazy" width="1100" height="688" /></a>
+              <a href="#" class="post-img" aria-label="Read post: Building a PMO that engineering actually wants to work with"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1100&q=80&auto=format&fit=crop" onerror="this.onerror=null;this.src='/media/blog-1.jpg';" alt="Team collaborating around a table in a modern office" loading="lazy" width="1100" height="688" /></a>
               <div class="post-body">
                 <span class="post-tag">PMO</span>
                 <h3>Building a PMO that engineering actually wants to work with</h3>
@@ -444,7 +444,7 @@ const base = '/varun-portfolio2';
               </div>
             </article>
             <article class="post" data-reveal>
-              <a href="#" class="post-img" aria-label="Read post: Where Generative AI quietly pays off inside a PMO"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1100&q=80&auto=format&fit=crop" onerror="this.onerror=null;this.src='/varun-portfolio2/media/blog-2.jpg';" alt="Abstract visualization of artificial intelligence neural networks" loading="lazy" width="1100" height="688" /></a>
+              <a href="#" class="post-img" aria-label="Read post: Where Generative AI quietly pays off inside a PMO"><img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=1100&q=80&auto=format&fit=crop" onerror="this.onerror=null;this.src='/media/blog-2.jpg';" alt="Abstract visualization of artificial intelligence neural networks" loading="lazy" width="1100" height="688" /></a>
               <div class="post-body">
                 <span class="post-tag">GenAI</span>
                 <h3>Where Generative AI quietly pays off inside a PMO</h3>
@@ -453,7 +453,7 @@ const base = '/varun-portfolio2';
               </div>
             </article>
             <article class="post" data-reveal>
-              <a href="#" class="post-img" aria-label="Read post: Choosing a VMS without falling for the demo"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1100&q=80&auto=format&fit=crop" onerror="this.onerror=null;this.src='/varun-portfolio2/media/blog-3.jpg';" alt="Person reviewing documents and contracts at a desk" loading="lazy" width="1100" height="688" /></a>
+              <a href="#" class="post-img" aria-label="Read post: Choosing a VMS without falling for the demo"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=1100&q=80&auto=format&fit=crop" onerror="this.onerror=null;this.src='/media/blog-3.jpg';" alt="Person reviewing documents and contracts at a desk" loading="lazy" width="1100" height="688" /></a>
               <div class="post-body">
                 <span class="post-tag">Vendor Strategy</span>
                 <h3>Choosing a VMS without falling for the demo</h3>
@@ -609,7 +609,7 @@ const base = '/varun-portfolio2';
     </div>
   </div>
 
-  <script is:inline src="/varun-portfolio2/assets/js/main.js"></script>
+  <script is:inline src="/assets/js/main.js"></script>
   <script is:inline>
     /* EmailJS setup */
     window.EMAILJS_PUBLIC_KEY   = 'qc2j8OCwQekmHwBUU';
