@@ -16,6 +16,8 @@ const experiences = (await getCollection('experience')).sort((a, b) => {
   if (!a.data.current && b.data.current) return 1;
   return a.data.order - b.data.order;
 });
+const projects = (await getCollection('projects')).sort((a, b) => a.data.order - b.data.order);
+const testimonials = (await getCollection('testimonials')).sort((a, b) => a.data.order - b.data.order);
 
 const base = '';
 ---
@@ -86,6 +88,20 @@ const base = '';
     </a>
   </section>
 
+  <!-- Open to Work band -->
+  <div class="avail-band">
+    <div class="container avail-inner">
+      <span class="avail-dot" aria-hidden="true"></span>
+      <p class="avail-text">Currently open to <strong>Senior PMO</strong>, <strong>TPM</strong> &amp; <strong>Digital Transformation</strong> roles</p>
+      <div class="avail-pills">
+        <span>Full-time</span>
+        <span>Advisory</span>
+        <span>Fractional</span>
+      </div>
+      <a href="#contact" class="avail-cta">Get in touch →</a>
+    </div>
+  </div>
+
   <section id="about" class="section about" data-reveal>
     <div class="container about-grid">
       <div class="about-visual">
@@ -116,6 +132,57 @@ const base = '';
           <li>Power BI, Tableau, Zoho Analytics, and KPI dashboards.</li>
           <li>Vendor &amp; partner ecosystem governance, RFP / RFI, business case &amp; ROI.</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries strip -->
+  <section class="industries" aria-label="Industries served">
+    <div class="container">
+      <p class="eyebrow center">Domains</p>
+      <div class="industries-grid">
+        <div class="industry-item">
+          <div class="industry-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <strong>Oil &amp; Energy</strong>
+          <span>Global infrastructure &amp; physical security</span>
+        </div>
+        <div class="industry-item">
+          <div class="industry-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M22 12h-4l-3 9L9 3l-3 9H2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <strong>Healthcare</strong>
+          <span>US payer systems, COB &amp; HIPAA compliance</span>
+        </div>
+        <div class="industry-item">
+          <div class="industry-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22V8M5 12H2a10 10 0 0020 0h-3M12 2a10 10 0 00-9.95 9h19.9A10 10 0 0012 2z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <strong>Telecom</strong>
+          <span>Digital ops &amp; CRM transformation</span>
+        </div>
+        <div class="industry-item">
+          <div class="industry-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="1.5"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" stroke="currentColor" stroke-width="1.5"/></svg>
+          </div>
+          <strong>Fintech</strong>
+          <span>Payments, lending &amp; core banking platforms</span>
+        </div>
+        <div class="industry-item">
+          <div class="industry-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <strong>Physical Security</strong>
+          <span>Genetec, Honeywell, access control at scale</span>
+        </div>
+        <div class="industry-item">
+          <div class="industry-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </div>
+          <strong>Enterprise IT</strong>
+          <span>ERP, CRM &amp; cloud-native programme delivery</span>
+        </div>
       </div>
     </div>
   </section>
@@ -175,27 +242,27 @@ const base = '';
       <div class="skills-grid">
         <div class="skill-card" data-reveal>
           <h3>Program &amp; Delivery</h3>
-          <div class="chips"><span>Program Management</span><span>TPM</span><span>PMO Setup</span><span>Portfolio</span><span>Agile / Scrum</span><span>Kanban</span><span>SAFe</span><span>Waterfall</span><span>Hybrid</span><span>RAID</span><span>OKRs &amp; KPIs</span></div>
+          <div class="chips"><span class="key">Program Management</span><span class="key">PMO Setup</span><span class="key">Agile / Scrum</span><span>TPM</span><span>Portfolio</span><span>Kanban</span><span>SAFe</span><span>Waterfall</span><span>Hybrid</span><span>RAID</span><span>OKRs &amp; KPIs</span></div>
         </div>
         <div class="skill-card" data-reveal>
           <h3>Business Architecture &amp; BA</h3>
-          <div class="chips"><span>BRD / FRD / SRS</span><span>HLD / LLD</span><span>User Stories</span><span>BPMN</span><span>Gap &amp; Impact Analysis</span><span>RFP / RFI</span><span>ROI &amp; Business Case</span><span>Lucidchart</span><span>Visio</span><span>Miro</span><span>Figma</span></div>
+          <div class="chips"><span class="key">BRD / FRD / SRS</span><span class="key">Gap &amp; Impact Analysis</span><span class="key">ROI &amp; Business Case</span><span>HLD / LLD</span><span>User Stories</span><span>BPMN</span><span>RFP / RFI</span><span>Lucidchart</span><span>Visio</span><span>Miro</span><span>Figma</span></div>
         </div>
         <div class="skill-card" data-reveal>
           <h3>Platforms &amp; ERP/CRM</h3>
-          <div class="chips"><span>Microsoft Dynamics 365</span><span>Zoho One</span><span>Zoho CRM</span><span>Zoho Books / Projects / Analytics</span><span>Zoho Creator</span><span>Ramco HCM</span><span>Salesforce</span><span>SAP</span><span>Workday</span><span>Genetec</span><span>Honeywell Pro-Watch</span></div>
+          <div class="chips"><span class="key">Microsoft Dynamics 365</span><span class="key">Zoho One</span><span class="key">Salesforce</span><span>Zoho CRM</span><span>Zoho Books / Projects / Analytics</span><span>Zoho Creator</span><span>Ramco HCM</span><span>SAP</span><span>Workday</span><span>Genetec</span><span>Honeywell Pro-Watch</span></div>
         </div>
         <div class="skill-card" data-reveal>
           <h3>Data, BI &amp; Analytics</h3>
-          <div class="chips"><span>SQL / T-SQL</span><span>Stored Procedures</span><span>SSIS ETL</span><span>Snowflake</span><span>DBT</span><span>Alteryx</span><span>Power BI</span><span>Tableau</span><span>Zoho Analytics</span><span>Excel (Advanced)</span><span>KPI Dashboards</span></div>
+          <div class="chips"><span class="key">SQL / T-SQL</span><span class="key">Power BI</span><span class="key">SSIS ETL</span><span>Stored Procedures</span><span>Snowflake</span><span>DBT</span><span>Alteryx</span><span>Tableau</span><span>Zoho Analytics</span><span>Excel (Advanced)</span><span>KPI Dashboards</span></div>
         </div>
         <div class="skill-card" data-reveal>
           <h3>Cloud, Integration &amp; Code</h3>
-          <div class="chips"><span>Microsoft Azure</span><span>Azure DevOps</span><span>Azure OpenAI</span><span>REST APIs</span><span>Webhooks</span><span>Python</span><span>C</span><span>SharePoint</span><span>Power Automate</span><span>Power Apps</span><span>Git</span></div>
+          <div class="chips"><span class="key">Microsoft Azure</span><span class="key">Azure DevOps</span><span class="key">Python</span><span>Azure OpenAI</span><span>REST APIs</span><span>Webhooks</span><span>C</span><span>SharePoint</span><span>Power Automate</span><span>Power Apps</span><span>Git</span></div>
         </div>
         <div class="skill-card highlight" data-reveal>
           <h3>Generative AI</h3>
-          <div class="chips"><span>GenAI Strategy</span><span>Prompt Engineering</span><span>LLM Applications</span><span>Microsoft Copilot</span><span>Azure OpenAI</span><span>AI-Assisted Reporting</span><span>AI/ML PoC (Python)</span><span>Conversational / Recommendation AI</span></div>
+          <div class="chips"><span class="key">GenAI Strategy</span><span class="key">Prompt Engineering</span><span class="key">Azure OpenAI</span><span>LLM Applications</span><span>Microsoft Copilot</span><span>AI-Assisted Reporting</span><span>AI/ML PoC (Python)</span><span>Conversational / Recommendation AI</span></div>
         </div>
       </div>
     </div>
@@ -232,6 +299,37 @@ const base = '';
     </div>
   </section>
 
+  <section id="projects" class="section projects" data-reveal>
+    <div class="container">
+      <p class="eyebrow center">Personal Builds</p>
+      <h2 class="section-title center">Projects</h2>
+      <p class="section-sub center">Tools, proofs of concept, and experiments built outside of client work.</p>
+
+      <div class="projects-grid">
+        {projects.map(proj => (
+          <article class="project-card" data-reveal>
+            <div class="project-top">
+              <div class="project-status" data-status={proj.data.status}>{proj.data.status}</div>
+              <h3>{proj.data.title}</h3>
+              <p>{proj.data.description}</p>
+            </div>
+            <div class="project-bottom">
+              <div class="chips project-chips">
+                {proj.data.stack.map(s => <span>{s}</span>)}
+              </div>
+              {proj.data.link && (
+                <a href={proj.data.link} target="_blank" rel="noopener" class="project-link">
+                  {proj.data.linkLabel || 'View project'}
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section id="cases" class="section cases" data-reveal>
     <div class="container">
       <p class="eyebrow center">Selected Work</p>
@@ -258,6 +356,33 @@ const base = '';
               <button class="btn-case-detail" data-open-modal={`case-modal-${cs.id}`} aria-haspopup="dialog">View full case study →</button>
             </div>
           </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="section testimonials" data-reveal>
+    <div class="container">
+      <p class="eyebrow center">Social Proof</p>
+      <h2 class="section-title center">What people say</h2>
+      <p class="section-sub center">From colleagues, managers, and stakeholders. Update these via the CMS with your real LinkedIn recommendations.</p>
+
+      <div class="testimonials-grid">
+        {testimonials.map(t => (
+          <blockquote class="testimonial" data-reveal>
+            <svg class="quote-mark" width="40" height="32" viewBox="0 0 40 32" fill="none" aria-hidden="true">
+              <path d="M0 32V19.2C0 8.533 5.867 2.133 17.6 0l2.133 3.2C13.6 4.8 10.267 8.267 9.6 14.4H16V32H0zm22.4 0V19.2C22.4 8.533 28.267 2.133 40 0l2.133 3.2C36 4.8 32.667 8.267 32 14.4H38.4V32H22.4z" fill="currentColor"/>
+            </svg>
+            <p class="testimonial-quote">{t.data.quote}</p>
+            <footer class="testimonial-author">
+              <div class="testimonial-avatar">{t.data.name.split(' ').map(n => n[0]).join('').slice(0,2)}</div>
+              <div>
+                <strong>{t.data.name}</strong>
+                <span>{t.data.title} · {t.data.company}</span>
+                {t.data.relation && <em>{t.data.relation}</em>}
+              </div>
+            </footer>
+          </blockquote>
         ))}
       </div>
     </div>
@@ -290,10 +415,13 @@ const base = '';
       <p class="section-sub center">A glimpse into my professional journey, speaking engagements, and team collaborations.</p>
 
       <div class="gallery-grid">
-        {galleryItems.map(item => (
-          <div class="gallery-item" data-reveal>
+        {galleryItems.map((item, i) => (
+          <div class="gallery-item" data-reveal data-lb-index={i} role="button" tabindex="0" aria-label={`View photo: ${item.data.caption}`}>
             <img src={`${base}${item.data.image}`} alt={item.data.alt} loading="lazy" width="600" height="600" />
             <div class="gallery-caption">{item.data.caption}</div>
+            <div class="gallery-zoom" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </div>
           </div>
         ))}
       </div>
@@ -455,6 +583,24 @@ const base = '';
       </div>
     </div>
   ))}
+
+  <!-- Gallery Lightbox -->
+  <div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image viewer">
+    <div class="lightbox-overlay" id="lb-overlay"></div>
+    <button class="lightbox-close" id="lb-close" aria-label="Close image viewer">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+    <button class="lightbox-prev" id="lb-prev" aria-label="Previous photo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button class="lightbox-next" id="lb-next" aria-label="Next photo">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M9 18l6-6-6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <figure class="lightbox-figure">
+      <img id="lb-img" src="" alt="" />
+      <figcaption id="lb-caption"></figcaption>
+    </figure>
+  </div>
 
   <!-- Back to top -->
   <button id="back-to-top" class="back-top" aria-label="Back to top" hidden>

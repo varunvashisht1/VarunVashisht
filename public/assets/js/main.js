@@ -114,6 +114,48 @@
     backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
   }
 
+  /* ---------- Gallery Lightbox ---------- */
+  const lightbox   = document.getElementById('lightbox');
+  const lbImg      = document.getElementById('lb-img');
+  const lbCaption  = document.getElementById('lb-caption');
+  const lbClose    = document.getElementById('lb-close');
+  const lbOverlay  = document.getElementById('lb-overlay');
+  const lbPrev     = document.getElementById('lb-prev');
+  const lbNext     = document.getElementById('lb-next');
+  const galleryEls = Array.from(document.querySelectorAll('.gallery-item'));
+  let lbIndex = 0;
+
+  function lbOpen(index) {
+    if (!lightbox || !galleryEls.length) return;
+    lbIndex = ((index % galleryEls.length) + galleryEls.length) % galleryEls.length;
+    const item = galleryEls[lbIndex];
+    const img  = item.querySelector('img');
+    const cap  = item.querySelector('.gallery-caption');
+    lbImg.src         = img ? img.src : '';
+    lbImg.alt         = img ? img.alt : '';
+    lbCaption.textContent = cap ? cap.textContent : '';
+    lightbox.hidden   = false;
+    document.body.style.overflow = 'hidden';
+    lbClose.focus();
+  }
+
+  function lbCloseFn() {
+    if (!lightbox) return;
+    lightbox.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  if (lightbox) {
+    galleryEls.forEach((el, i) => {
+      el.addEventListener('click', () => lbOpen(i));
+      el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); lbOpen(i); } });
+    });
+    lbClose.addEventListener('click', lbCloseFn);
+    lbOverlay.addEventListener('click', lbCloseFn);
+    lbPrev.addEventListener('click', () => lbOpen(lbIndex - 1));
+    lbNext.addEventListener('click', () => lbOpen(lbIndex + 1));
+  }
+
   /* ---------- Case Study Modals with focus trap ---------- */
   let lastFocusedEl = null;
 
@@ -152,6 +194,13 @@
 
   /* Focus trap inside open modal */
   document.addEventListener('keydown', (e) => {
+    /* Lightbox keyboard nav */
+    if (lightbox && !lightbox.hidden) {
+      if (e.key === 'Escape')      { lbCloseFn(); return; }
+      if (e.key === 'ArrowLeft')   { lbOpen(lbIndex - 1); return; }
+      if (e.key === 'ArrowRight')  { lbOpen(lbIndex + 1); return; }
+    }
+
     const openModal = document.querySelector('.modal:not([hidden])');
 
     if (e.key === 'Escape' && openModal) {

@@ -93,3 +93,33 @@ collections:
         widget: list
         field: { label: Achievement, name: bullet, widget: string }
       - { label: Order, name: order, widget: number, default: 99 }
+
+  - name: projects
+    label: Projects
+    folder: src/content/projects
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - label: Tech Stack
+        name: stack
+        widget: list
+        field: { label: Technology, name: tech, widget: string }
+      - { label: Status, name: status, widget: select, options: ["Live", "PoC Validated", "Delivered", "Template", "In Progress", "Archived"] }
+      - { label: Link URL, name: link, widget: string, required: false }
+      - { label: Link Label, name: linkLabel, widget: string, required: false, hint: "e.g. View on GitHub" }
+      - { label: Order, name: order, widget: number, default: 99 }
+
+  - name: testimonials
+    label: Testimonials
+    folder: src/content/testimonials
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: Quote, name: quote, widget: text, hint: "The full testimonial text" }
+      - { label: Name, name: name, widget: string }
+      - { label: Job Title, name: title, widget: string }
+      - { label: Company, name: company, widget: string }
+      - { label: Relation, name: relation, widget: string, required: false, hint: "e.g. Direct Manager, Colleague, Client Stakeholder" }
+      - { label: Order, name: order, widget: number, default: 99 }

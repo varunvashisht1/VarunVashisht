@@ -70,4 +70,29 @@ const experience = defineCollection({
   }),
 });
 
-export const collections = { blog, gallery, cases, certifications, experience };
+const projects = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    stack: z.array(z.string()),
+    status: z.string(),
+    link: z.string().optional(),
+    linkLabel: z.string().optional(),
+    order: z.number().default(99),
+  }),
+});
+
+const testimonials = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/testimonials' }),
+  schema: z.object({
+    quote: z.string(),
+    name: z.string(),
+    title: z.string(),
+    company: z.string(),
+    relation: z.string().optional(),
+    order: z.number().default(99),
+  }),
+});
+
+export const collections = { blog, gallery, cases, certifications, experience, projects, testimonials };
