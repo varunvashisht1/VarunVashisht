@@ -1,6 +1,6 @@
 ---
-caption: "Collaborating with cross-functional teams"
-alt: "Varun Vashisht collaborating with a cross-functional team"
-image: "/media/personal-3.png"
+caption: Shell DESS Program
+alt: Shell DESS Program
+image: /media/1767237458737.jpeg
 order: 3
 ---
