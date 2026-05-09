@@ -1,0 +1,168 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1080">
+  <defs>
+    <linearGradient id="wood" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9b7a4f"/>
+      <stop offset="55%" stop-color="#7a5836"/>
+      <stop offset="100%" stop-color="#5d3f21"/>
+    </linearGradient>
+
+    <pattern id="grain" patternUnits="userSpaceOnUse" width="300" height="14">
+      <rect width="300" height="14" fill="none"/>
+      <path d="M0 4 Q150 5 300 3" stroke="#3a2510" stroke-width="0.6" fill="none" opacity="0.35"/>
+      <path d="M0 8 Q150 7 300 9" stroke="#5a3f22" stroke-width="0.4" fill="none" opacity="0.3"/>
+      <path d="M0 12 Q150 13 300 11" stroke="#2d1a08" stroke-width="0.5" fill="none" opacity="0.25"/>
+    </pattern>
+
+    <filter id="noteshadow" x="-10%" y="-10%" width="120%" height="125%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="10"/>
+      <feOffset dx="6" dy="14"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.5"/></feComponentTransfer>
+      <feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <radialGradient id="noteSheen" cx="30%" cy="20%" r="80%">
+      <stop offset="0%" stop-color="#fff5b3"/>
+      <stop offset="100%" stop-color="#fde047"/>
+    </radialGradient>
+
+    <filter id="rough">
+      <feTurbulence baseFrequency="0.04" numOctaves="2" seed="5"/>
+      <feDisplacementMap in="SourceGraphic" scale="2"/>
+    </filter>
+  </defs>
+
+  <!-- Wood desk -->
+  <rect width="1080" height="1080" fill="url(#wood)"/>
+  <rect width="1080" height="1080" fill="url(#grain)" opacity="0.55"/>
+
+  <!-- Long wood grain streaks -->
+  <g opacity="0.28" stroke="#2d1a08" fill="none">
+    <path d="M-20 180 Q540 175 1100 195" stroke-width="1.6"/>
+    <path d="M-20 320 Q540 335 1100 318" stroke-width="1.2"/>
+    <path d="M-20 480 Q540 470 1100 495" stroke-width="1.4"/>
+    <path d="M-20 640 Q540 655 1100 638" stroke-width="1"/>
+    <path d="M-20 800 Q540 790 1100 815" stroke-width="1.6"/>
+    <path d="M-20 940 Q540 950 1100 935" stroke-width="1.2"/>
+  </g>
+  <g opacity="0.18" stroke="#7a5836" fill="none" stroke-width="0.8">
+    <path d="M-20 240 Q540 245 1100 235"/>
+    <path d="M-20 580 Q540 575 1100 590"/>
+    <path d="M-20 880 Q540 885 1100 875"/>
+  </g>
+
+  <!-- Coffee mug rings (upper right) -->
+  <g transform="translate(890, 195)" opacity="0.55">
+    <circle r="105" fill="none" stroke="#3a2008" stroke-width="4" opacity="0.4"/>
+    <circle r="98" fill="none" stroke="#2a1605" stroke-width="2.5" opacity="0.55"/>
+    <circle r="90" fill="none" stroke="#3a2008" stroke-width="1.5" opacity="0.3"/>
+    <path d="M -88 -45 Q -75 -90 -30 -100" stroke="#3a2008" stroke-width="3" fill="none" opacity="0.4"/>
+    <path d="M 60 -85 Q 95 -70 102 -30" stroke="#3a2008" stroke-width="2" fill="none" opacity="0.35"/>
+  </g>
+
+  <!-- Small drip stain near note -->
+  <g transform="translate(120, 880)" opacity="0.4">
+    <ellipse rx="22" ry="14" fill="#3a2008"/>
+    <ellipse cx="18" cy="8" rx="6" ry="4" fill="#3a2008" opacity="0.7"/>
+  </g>
+
+  <!-- Sticky note -->
+  <g transform="translate(540, 540) rotate(-3)">
+    <g filter="url(#noteshadow)">
+      <rect x="-360" y="-360" width="720" height="720" fill="url(#noteSheen)" rx="3"/>
+    </g>
+    <!-- Subtle creases -->
+    <path d="M -360 -200 L 360 -210" stroke="#e8d05f" stroke-width="0.8" opacity="0.4" fill="none"/>
+    <path d="M -360 50 L 360 45" stroke="#e8d05f" stroke-width="0.6" opacity="0.35" fill="none"/>
+    <!-- Top corner curl -->
+    <path d="M -360 -360 L -310 -360 L -360 -315 Z" fill="#d4b840" opacity="0.7"/>
+    <path d="M -360 -360 L -310 -360 L -360 -315 Z" fill="none" stroke="#a08820" stroke-width="0.8" opacity="0.5"/>
+  </g>
+
+  <!-- Sticky note handwritten content -->
+  <g transform="translate(540, 540) rotate(-3)" font-family="'Marker Felt', 'Comic Sans MS', 'Bradley Hand', cursive" fill="#1a1a1a">
+
+    <!-- WELL WELL WELL -->
+    <text x="0" y="-220" text-anchor="middle" font-size="78" font-weight="bold" transform="rotate(-1.2 0 -220)">well, well, well.</text>
+
+    <!-- Squiggly underline -->
+    <path d="M -290 -180 Q -200 -188 -100 -178 T 100 -180 T 290 -178" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+
+    <!-- $4k line -->
+    <text x="-285" y="-70" font-size="62" font-weight="600" transform="rotate(0.6 -285 -70)">$4,000/mo on AI</text>
+
+    <!-- equals -->
+    <text x="0" y="35" text-anchor="middle" font-size="100" font-weight="bold" transform="rotate(-1 0 35)">=</text>
+
+    <!-- 2 senior devs -->
+    <text x="-260" y="155" font-size="62" font-weight="600" transform="rotate(-0.8 -260 155)">2 senior devs.</text>
+
+    <!-- arrow down -->
+    <path d="M 0 200 Q 5 235 0 270 L -14 254 M 0 270 L 14 254" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <!-- guess which one -->
+    <text x="0" y="320" text-anchor="middle" font-size="40" transform="rotate(0.5 0 320)">guess which one</text>
+    <text x="0" y="365" text-anchor="middle" font-size="40" font-weight="bold" transform="rotate(-0.7 0 365)">actually ships.</text>
+
+    <!-- (called it) red scribble in corner -->
+    <g transform="translate(210, 295) rotate(11)">
+      <text font-size="32" fill="#b9341c" font-style="italic">(called it)</text>
+      <path d="M -8 8 Q 60 4 130 10" stroke="#b9341c" stroke-width="2.5" fill="none"/>
+    </g>
+
+    <!-- tiny doodle: a sad cloud (yelling at the cloud) -->
+    <g transform="translate(-275, 290)" stroke="#1a1a1a" stroke-width="2.5" fill="none" stroke-linecap="round">
+      <path d="M 0 10 q -10 -2 -10 8 q -8 0 -8 8 q 0 8 10 8 l 40 0 q 12 0 12 -10 q 8 -2 6 -10 q -2 -10 -14 -8 q -3 -8 -14 -8 q -10 0 -14 12 z"/>
+      <!-- frown -->
+      <circle cx="10" cy="20" r="1.5" fill="#1a1a1a"/>
+      <circle cx="28" cy="20" r="1.5" fill="#1a1a1a"/>
+      <path d="M 10 32 Q 19 26 28 32"/>
+    </g>
+  </g>
+
+  <!-- Black pen with red cap, lower right -->
+  <g transform="translate(820, 905) rotate(28)">
+    <rect x="0" y="0" width="240" height="16" rx="8" fill="#1a1a1a"/>
+    <rect x="6" y="4" width="160" height="2" fill="#3a3a3a"/>
+    <polygon points="240,0 268,8 240,16" fill="#1a1a1a"/>
+    <rect x="0" y="-1" width="60" height="18" rx="4" fill="#b9341c"/>
+    <rect x="2" y="1" width="56" height="2" fill="#d65541" opacity="0.7"/>
+    <circle cx="-2" cy="8" r="2" fill="#1a1a1a"/>
+  </g>
+
+  <!-- Edge of laptop bottom-left -->
+  <g transform="translate(-30, 960)">
+    <rect x="0" y="0" width="380" height="200" fill="#1a1a1a" rx="6"/>
+    <rect x="0" y="0" width="380" height="6" fill="#2d2d2d"/>
+    <rect x="14" y="20" width="350" height="120" fill="#0a0a0a" rx="3"/>
+    <g fill="#2d2d2d">
+      <rect x="22" y="32" width="38" height="32" rx="3"/>
+      <rect x="64" y="32" width="38" height="32" rx="3"/>
+      <rect x="106" y="32" width="38" height="32" rx="3"/>
+      <rect x="148" y="32" width="38" height="32" rx="3"/>
+      <rect x="190" y="32" width="38" height="32" rx="3"/>
+      <rect x="232" y="32" width="38" height="32" rx="3"/>
+      <rect x="274" y="32" width="38" height="32" rx="3"/>
+      <rect x="316" y="32" width="38" height="32" rx="3"/>
+      <rect x="22" y="70" width="38" height="32" rx="3"/>
+      <rect x="64" y="70" width="38" height="32" rx="3"/>
+      <rect x="106" y="70" width="38" height="32" rx="3"/>
+      <rect x="148" y="70" width="38" height="32" rx="3"/>
+      <rect x="190" y="70" width="38" height="32" rx="3"/>
+      <rect x="232" y="70" width="38" height="32" rx="3"/>
+      <rect x="274" y="70" width="38" height="32" rx="3"/>
+      <rect x="316" y="70" width="38" height="32" rx="3"/>
+      <rect x="22" y="108" width="80" height="32" rx="3"/>
+      <rect x="106" y="108" width="160" height="32" rx="3"/>
+      <rect x="270" y="108" width="84" height="32" rx="3"/>
+    </g>
+    <!-- Keyboard glow -->
+    <rect x="14" y="20" width="350" height="120" fill="url(#noteSheen)" opacity="0.04" rx="3"/>
+  </g>
+
+  <!-- Subtle vignette -->
+  <radialGradient id="vignette" cx="50%" cy="50%" r="75%">
+    <stop offset="60%" stop-color="#000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#000" stop-opacity="0.35"/>
+  </radialGradient>
+  <rect width="1080" height="1080" fill="url(#vignette)"/>
+</svg>
