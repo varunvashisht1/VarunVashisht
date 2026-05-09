@@ -1049,6 +1049,7 @@ em { font-style: italic; color: var(--text-soft); }
   font-size: 20px;
   margin-bottom: 12px;
   z-index: 1;
+  padding-right: 56px;
 }
 .method-step p {
   font-size: 14.5px;
