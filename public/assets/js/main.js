@@ -29,6 +29,22 @@
     });
   }
 
+  /* ---------- Active nav highlighting ---------- */
+  const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
+  const sections = document.querySelectorAll('section[id], header[id]');
+
+  const activeSectionIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(a => a.classList.remove('active'));
+        const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+        if (activeLink) activeLink.classList.add('active');
+      }
+    });
+  }, { threshold: 0.25, rootMargin: '-10% 0px -65% 0px' });
+
+  sections.forEach(s => activeSectionIO.observe(s));
+
   /* ---------- Scroll reveal ---------- */
   const revealEls = document.querySelectorAll('[data-reveal]');
   if ('IntersectionObserver' in window) {
@@ -69,7 +85,7 @@
   }, { threshold: 0.6 });
   counters.forEach(el => counterIO.observe(el));
 
-  /* ---------- Smooth-scroll offset for fixed nav ---------- */
+  /* ---------- Smooth-scroll with dynamic nav offset ---------- */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', (e) => {
       const id = a.getAttribute('href');
@@ -77,13 +93,37 @@
       const target = document.querySelector(id);
       if (!target) return;
       e.preventDefault();
-      const top = target.getBoundingClientRect().top + window.scrollY - 70;
+      const navHeight = document.querySelector('.nav')?.offsetHeight ?? 72;
+      const top = target.getBoundingClientRect().top + window.scrollY - navHeight - 8;
       window.scrollTo({ top, behavior: 'smooth' });
     });
   });
 
-  /* ---------- Case Study Modals ---------- */
+  /* ---------- Back to top ---------- */
+  const backTop = document.getElementById('back-to-top');
+  if (backTop) {
+    const toggleBackTop = () => {
+      if (window.scrollY > 400) {
+        backTop.hidden = false;
+      } else {
+        backTop.hidden = true;
+      }
+    };
+    window.addEventListener('scroll', toggleBackTop, { passive: true });
+    toggleBackTop();
+    backTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
+
+  /* ---------- Case Study Modals with focus trap ---------- */
   let lastFocusedEl = null;
+
+  const FOCUSABLE = 'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+  function getFocusable(modal) {
+    return Array.from(modal.querySelectorAll(FOCUSABLE)).filter(
+      el => !el.hasAttribute('disabled') && !el.closest('[hidden]')
+    );
+  }
 
   function openModal(id) {
     const modal = document.getElementById(id);
@@ -91,7 +131,7 @@
     lastFocusedEl = document.activeElement;
     modal.hidden = false;
     document.body.style.overflow = 'hidden';
-    const focusable = modal.querySelectorAll('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])');
+    const focusable = getFocusable(modal);
     if (focusable.length) focusable[0].focus();
   }
 
@@ -110,10 +150,31 @@
     el.addEventListener('click', () => closeModal(el.closest('.modal')));
   });
 
+  /* Focus trap inside open modal */
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      const open = document.querySelector('.modal:not([hidden])');
-      if (open) closeModal(open);
+    const openModal = document.querySelector('.modal:not([hidden])');
+
+    if (e.key === 'Escape' && openModal) {
+      closeModal(openModal);
+      return;
+    }
+
+    if (e.key === 'Tab' && openModal) {
+      const focusable = getFocusable(openModal);
+      if (!focusable.length) { e.preventDefault(); return; }
+      const first = focusable[0];
+      const last  = focusable[focusable.length - 1];
+      if (e.shiftKey) {
+        if (document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        }
+      } else {
+        if (document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
     }
   });
 
