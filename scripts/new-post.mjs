@@ -57,8 +57,8 @@ async function generatePost(notes, topic) {
   console.log('\n✦ Claude is writing your post...\n');
 
   const message = await client.messages.create({
-    model: 'claude-opus-4-5',
-    max_tokens: 2000,
+    model: 'claude-haiku-4-5',
+    max_tokens: 1200,
     messages: [{
       role: 'user',
       content: `You are writing a blog post for Varun Vashisht's professional portfolio. Varun is a Senior Program Manager, TPM, and Business Architect with 14+ years in enterprise digital transformation.
